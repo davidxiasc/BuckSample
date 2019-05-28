@@ -1,6 +1,20 @@
 load("//Config:buck_rule_macros.bzl", "first_party_library")
 
-first_party_library(
-    name = "SwiftAndObjc",
-    has_objective_c = True,
+apple_binary(
+    name = "SwiftAndObjcBinary",
+    headers = glob(['Sources/**/*.h']),
+    preprocessor_flags = ['-fobjc-arc'],
+    srcs = glob([
+      'Sources/**/*.m',
+      'Sources/**/*.swift',
+    ]),
+    swift_version = "4",
+    swift_compiler_flags = [
+      '-emit-module',
+      # this produces an invalid argument error: '-module-name SwiftAndObjc',
+    ],
+    frameworks = [
+      '$SDKROOT/System/Library/Frameworks/UIKit.framework',
+      '$SDKROOT/System/Library/Frameworks/Foundation.framework',
+    ]
 )

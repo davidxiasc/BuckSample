@@ -1,6 +1,6 @@
 #import "MyObjcClassInMixedModule.h"
 
-#import <SwiftAndObjc/SwiftAndObjc-Swift.h>
+#import "SwiftAndObjc-Swift.h"
 
 @implementation MyObjcClassInMixedModule
 - (void)sayHello:(NSString *)name {
